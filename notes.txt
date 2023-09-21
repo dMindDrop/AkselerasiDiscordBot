@@ -1,0 +1,28 @@
+Roles/group on the server:
+
+JGB1, JGB2, JGS1, JGS2,
+JKB1, JKB2, JKS1, JKS2, 
+
+KGB1, KGB2, KGS1, KGS2,
+
+
+KKB1A, KKB1B, KKB1C, KKB1D, KKB1E,
+
+KKB2A, KKB2B, KKB2C, KKB2D, KKB2E, 
+
+KKS1A, KKS1B, KKS1C, KKS1D, KKS1E, 
+KKS2A, KKS2B, KKS2C, KKS2D, KKS2E, 
+
+Pilot
+Core
+c
+
+class  id:
+e.g.: 00124101 (for a student) the Class ID for this person is 00104100, 
+
+Meaning of the digits
+digit 1-3 is the school id
+digit 4 is the role of the person (teacher or principal, so it is set to 0)
+digit 5 is the the level of the class (here it is the 4th grade)
+digit 6 is the letter of the class (e.g. 4A=1, 4B=2 )
+digit 7-8 the roster number of the student

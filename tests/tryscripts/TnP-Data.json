@@ -1,0 +1,76 @@
+{
+  "school-staff": {
+    "471894501292769290": {
+      "first_name": "sss",
+      "last_name": "eee",
+      "group_code": "PILOT",
+      "StaffID": "22000007"
+    },
+    "1105367193727811595": {
+      "first_name": "Mind",
+      "last_name": "Pad",
+      "group_code": "PILOT",
+      "StaffID": "22000005"
+    },
+    "812902808512757781": {
+      "first_name": "Rizki",
+      "last_name": "Amanda",
+      "group_code": "CORE",
+      "StaffID": "22000006"
+    },
+    "1132230103473065995": {
+      "first_name": "dini",
+      "last_name": "anggreini",
+      "group_code": "CORE",
+      "StaffID": "22000004"
+    },
+    "1129304144298115133": {
+      "first_name": "F",
+      "last_name": "F",
+      "group_code": "CORE",
+      "StaffID": "22000003"
+    },
+    "1132230017548550217": {
+      "first_name": "Nissa",
+      "last_name": "Kustianita",
+      "group_code": "CORE",
+      "StaffID": "22000004"
+    },
+    "1093402139239403602": {
+      "first_name": "Dewi",
+      "last_name": "Sister",
+      "group_code": "CORE",
+      "StaffID": "22000008"
+    },
+    "1132956459223744544": {
+      "first_name": "Nur",
+      "last_name": "Samsiah",
+      "group_code": "PILOT",
+      "StaffID": "88870000"
+    },
+    "1132956674903248977": {
+      "first_name": "Yayan",
+      "last_name": "Mariam",
+      "group_code": "PILOT",
+      "StaffID": "88890000"
+    },
+    "1146326094211973120": {
+      "first_name": "Tatang",
+      "last_name": "Taryana",
+      "group_code": "PILOT",
+      "StaffID": "22000005"
+    },
+    "1132956050027466854": {
+      "first_name": "Yuni",
+      "last_name": "Harun",
+      "group_code": "PILOT",
+      "StaffID": "88860000"
+    },
+    "1132956214741962863": {
+      "first_name": "Tuti",
+      "last_name": "Suherti",
+      "group_code": "PILOT",
+      "StaffID": "88880000"
+    }
+  }
+}

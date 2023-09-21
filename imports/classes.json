@@ -1,0 +1,731 @@
+{
+    "class1": {
+        "teacher_DiscordID": "471894501292769290",
+        "teacher_ID": "22223333",
+        "students": [
+            {
+                "student_name": "Student1",
+                "student_id": "10000001"
+            },
+            {
+                "student_name": "Student2",
+                "student_id": "10000002"
+            },
+            {
+                "student_name": "Student3",
+                "student_id": "10000003"
+            },
+            {
+                "student_name": "Student4",
+                "student_id": "10000004"
+            },
+            {
+                "student_name": "Student5",
+                "student_id": "10000005"
+            },
+            {
+                "student_name": "Student6",
+                "student_id": "10000006"
+            },
+            {
+                "student_name": "Student7",
+                "student_id": "10000007"
+            },
+            {
+                "student_name": "Student8",
+                "student_id": "10000008"
+            }
+        ]
+    },
+    "class2": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "22000002",
+        "students": [
+            {
+                "student_name": "Student1",
+                "student_id": "20000001"
+            },
+            {
+                "student_name": "Student2",
+                "student_id": "20000002"
+            },
+            {
+                "student_name": "Student3",
+                "student_id": "20000003"
+            },
+            {
+                "student_name": "Student4",
+                "student_id": "20000004"
+            },
+            {
+                "student_name": "Student5",
+                "student_id": "20000005"
+            },
+            {
+                "student_name": "Student6",
+                "student_id": "20000006"
+            },
+            {
+                "student_name": "Student7",
+                "student_id": "20000007"
+            },
+            {
+                "student_name": "Student8",
+                "student_id": "20000008"
+            }
+        ]
+    },
+    "class3": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "22000003",
+        "students": [
+            {
+                "student_name": "Student1",
+                "student_id": "30000001"
+            },
+            {
+                "student_name": "Student2",
+                "student_id": "30000002"
+            },
+            {
+                "student_name": "Student3",
+                "student_id": "30000003"
+            },
+            {
+                "student_name": "Student4",
+                "student_id": "30000004"
+            },
+            {
+                "student_name": "Student5",
+                "student_id": "30000005"
+            },
+            {
+                "student_name": "Student6",
+                "student_id": "30000006"
+            },
+            {
+                "student_name": "Student7",
+                "student_id": "30000007"
+            },
+            {
+                "student_name": "Student8",
+                "student_id": "30000008"
+            }
+        ]
+    },
+    "class4": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "22000004",
+        "students": [
+            {
+                "student_name": "Student1",
+                "student_id": "40000001"
+            },
+            {
+                "student_name": "Student2",
+                "student_id": "40000002"
+            },
+            {
+                "student_name": "Student3",
+                "student_id": "40000003"
+            },
+            {
+                "student_name": "Student4",
+                "student_id": "40000004"
+            },
+            {
+                "student_name": "Student5",
+                "student_id": "40000005"
+            },
+            {
+                "student_name": "Student6",
+                "student_id": "40000006"
+            },
+            {
+                "student_name": "Student7",
+                "student_id": "40000007"
+            },
+            {
+                "student_name": "Student8",
+                "student_id": "40000008"
+            }
+        ]
+    },
+    "class5": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "22000005",
+        "students": [
+            {
+                "student_name": "Student1",
+                "student_id": "50000001"
+            },
+            {
+                "student_name": "Student2",
+                "student_id": "50000002"
+            },
+            {
+                "student_name": "Student3",
+                "student_id": "50000003"
+            },
+            {
+                "student_name": "Student4",
+                "student_id": "50000004"
+            },
+            {
+                "student_name": "Student5",
+                "student_id": "50000005"
+            },
+            {
+                "student_name": "Student6",
+                "student_id": "50000006"
+            },
+            {
+                "student_name": "Student7",
+                "student_id": "50000007"
+            },
+            {
+                "student_name": "Student8",
+                "student_id": "50000008"
+            }
+        ]
+    },
+    "class6": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "22000006",
+        "students": [
+            {
+                "student_name": "Student1",
+                "student_id": "60000001"
+            },
+            {
+                "student_name": "Student2",
+                "student_id": "60000002"
+            },
+            {
+                "student_name": "Student3",
+                "student_id": "60000003"
+            },
+            {
+                "student_name": "Student4",
+                "student_id": "60000004"
+            },
+            {
+                "student_name": "Student5",
+                "student_id": "60000005"
+            },
+            {
+                "student_name": "Student6",
+                "student_id": "60000006"
+            },
+            {
+                "student_name": "Student7",
+                "student_id": "60000007"
+            },
+            {
+                "student_name": "Student8",
+                "student_id": "60000008"
+            }
+        ]
+    },
+    "class7": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "22000007",
+        "students": [
+            {
+                "student_name": "Student1",
+                "student_id": "70000001"
+            },
+            {
+                "student_name": "Student2",
+                "student_id": "70000002"
+            },
+            {
+                "student_name": "Student3",
+                "student_id": "70000003"
+            },
+            {
+                "student_name": "Student4",
+                "student_id": "70000004"
+            },
+            {
+                "student_name": "Student5",
+                "student_id": "70000005"
+            },
+            {
+                "student_name": "Student6",
+                "student_id": "70000006"
+            },
+            {
+                "student_name": "Student7",
+                "student_id": "70000007"
+            },
+            {
+                "student_name": "Student8",
+                "student_id": "70000008"
+            }
+        ]
+    },
+    "class8": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "22000008",
+        "students": [
+            {
+                "student_name": "Student1",
+                "student_id": "80000001"
+            },
+            {
+                "student_name": "Student2",
+                "student_id": "80000002"
+            },
+            {
+                "student_name": "Student3",
+                "student_id": "80000003"
+            },
+            {
+                "student_name": "Student4",
+                "student_id": "80000004"
+            },
+            {
+                "student_name": "Student5",
+                "student_id": "80000005"
+            },
+            {
+                "student_name": "Student6",
+                "student_id": "80000006"
+            },
+            {
+                "student_name": "Student7",
+                "student_id": "80000007"
+            },
+            {
+                "student_name": "Student8",
+                "student_id": "80000008"
+            }
+        ]
+    },
+    
+    "class88864100": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "88860000",
+        "students": [
+            {
+                "student_name": "AHMAD ADIA SURYA",
+                "student_id": "88864101"
+            },
+            {
+                "student_name": "AHMAD DZKWAN FAIQ",
+                "student_id": "88864102"
+            },
+            {
+                "student_name": "AHMAD HABIBIE",
+                "student_id": "88864103"
+            },
+            {
+                "student_name": "AHMAD MAULANA",
+                "student_id": "88864104"
+            },
+            {
+                "student_name": "AHMAD SIDIQ AL ALAWI",
+                "student_id": "88864105"
+            },
+            {
+                "student_name": "AIRRA ARSILLA",
+                "student_id": "88864106"
+            },
+            {
+                "student_name": "ALBHIAN HERDIANSYAH",
+                "student_id": "88864107"
+            },
+            {
+                "student_name": "ALRAZZI RABANI AZWAN",
+                "student_id": "88864108"
+            },
+            {
+                "student_name": "ANGGI PUTRA RAFKA U",
+                "student_id": "88864109"
+            },
+            {
+                "student_name": "AQILLA PUTRI OCTAVIANI",
+                "student_id": "88864110"
+            },
+            {
+                "student_name": "ARYA PUTRA WIGUNA",
+                "student_id": "88864111"
+            },
+            {
+                "student_name": "AYUNDA PUTRI DESTIANI",
+                "student_id": "88864112"
+            },
+            {
+                "student_name": "DARA SHIDQIANA A",
+                "student_id": "88864113"
+            },
+            {
+                "student_name": "DELLA OKTAVIANI",
+                "student_id": "88864114"
+            },
+            {
+                "student_name": "DEVI LESTARY",
+                "student_id": "88864115"
+            },
+            {
+                "student_name": "DHEANDRA PUTRI CLARISA",
+                "student_id": "88864116"
+            },
+            {
+                "student_name": "EARLYTA ARSYFA SUKMA",
+                "student_id": "88864117"
+            },
+            {
+                "student_name": "FAHRI PUTRA PRATAMA",
+                "student_id": "88864118"
+            },
+            {
+                "student_name": "FAMELLA SAGITA",
+                "student_id": "88864119"
+            },
+            {
+                "student_name": "FEBBY WULANDARI",
+                "student_id": "88864120"
+            },
+            {
+                "student_name": "FEBYAN AINURACHMAN J",
+                "student_id": "88864121"
+            },
+            {
+                "student_name": "GALIH NUGRAHA",
+                "student_id": "88864122"
+            },
+            {
+                "student_name": "GALIH RAHADIAN ANUGRAH",
+                "student_id": "88864123"
+            },
+            {
+                "student_name": "GINA FITRIA RAMADHANI",
+                "student_id": "88864124"
+            },
+            {
+                "student_name": "JASMIN AZALEA ZAHRA",
+                "student_id": "88864125"
+            },
+            {
+                "student_name": "KAILA AL ZAYRA",
+                "student_id": "88864126"
+            },
+            {
+                "student_name": "KAYLA APRILIA PUTRI",
+                "student_id": "88864127"
+            },
+            {
+                "student_name": "REYHAN RAMADHAN",
+                "student_id": "88864128"
+            },
+            {
+                "student_name": "SASHI KARANA R",
+                "student_id": "88864129"
+            },
+            {
+                "student_name": "SITI HABIBAH AZZAHRA",
+                "student_id": "88864130"
+            },
+            {
+                "student_name": "MUHAMAD BINTANG R P",
+                "student_id": "88864131"
+            },
+            {
+                "student_name": "RAISYA ALDRIAN",
+                "student_id": "88864132"
+            }
+        ]
+    },
+    "class88874200": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "88870000",
+        "students": [
+            {
+                "student_name": "Anisa Salsabila",
+                "student_id": "88874201"
+            },
+            {
+                "student_name": "Dinda Chelsi",
+                "student_id": "88874202"
+            },
+            {
+                "student_name": "Fadhil Julian",
+                "student_id": "88874203"
+            },
+            {
+                "student_name": "Galang",
+                "student_id": "88874204"
+            },
+            {
+                "student_name": "Galuh Fadilla",
+                "student_id": "88874205"
+            },
+            {
+                "student_name": "Haris Afandi",
+                "student_id": "88874206"
+            },
+            {
+                "student_name": "Ilham Munyi",
+                "student_id": "88874207"
+            },
+            {
+                "student_name": "Keysha Dahranie",
+                "student_id": "88874208"
+            },
+            {
+                "student_name": "Muhammad Zio",
+                "student_id": "88874209"
+            },
+            {
+                "student_name": "Mega Ainun O",
+                "student_id": "88874210"
+            },
+            {
+                "student_name": "Muhammad Dias P",
+                "student_id": "88874211"
+            },
+            {
+                "student_name": "Muhammad Fajri Solehudin",
+                "student_id": "88874212"
+            },
+            {
+                "student_name": "Muhammad Gatra G",
+                "student_id": "88874213"
+            },
+            {
+                "student_name": "Muhammad Melfan A",
+                "student_id": "88874214"
+            },
+            {
+                "student_name": "Muhammad Regi M",
+                "student_id": "88874215"
+            },
+            {
+                "student_name": "Muhammad Rijalul Haq",
+                "student_id": "88874216"
+            },
+            {
+                "student_name": "Muhammad Rivaldi ALF",
+                "student_id": "88874217"
+            },
+            {
+                "student_name": "Muhammad Zulkarnaen",
+                "student_id": "88874218"
+            },
+            {
+                "student_name": "Mutiara Nur R",
+                "student_id": "88874219"
+            },
+            {
+                "student_name": "Nabila Nurmaulida",
+                "student_id": "88874220"
+            },
+            {
+                "student_name": "Nabila Putri R",
+                "student_id": "88874221"
+            },
+            {
+                "student_name": "Nafisa Putri Sofyan",
+                "student_id": "88874222"
+            },
+            {
+                "student_name": "Nesa Mariani",
+                "student_id": "88874223"
+            },
+            {
+                "student_name": "Noval Rivian H",
+                "student_id": "88874224"
+            },
+            {
+                "student_name": "Putra Juulianto",
+                "student_id": "88874225"
+            },
+            {
+                "student_name": "Rachel Aurellia",
+                "student_id": "88874226"
+            },
+            {
+                "student_name": "Siti Amelia",
+                "student_id": "88874227"
+            },
+            {
+                "student_name": "Siti Habibah",
+                "student_id": "88874228"
+            }
+        ]
+    },
+    "class88884300": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "88880000",
+        "students": [
+            {
+                "student_name": "MUHAMAD RIZKI",
+                "student_id": "88884301"
+            },
+            {
+                "student_name": "ALBAIHAQI AZKA ARROZAK",
+                "student_id": "88884302"
+            },
+            {
+                "student_name": "ARSAN KANAFI",
+                "student_id": "88884303"
+            },
+            {
+                "student_name": "GALANG PUTRA ROMADONI",
+                "student_id": "88884304"
+            },
+            {
+                "student_name": "KEZSYA OLIVIA",
+                "student_id": "88884305"
+            },
+            {
+                "student_name": "LUZZAIND AL RAMADHANI",
+                "student_id": "88884306"
+            },
+            {
+                "student_name": "MUHAMAD EXALT P",
+                "student_id": "88884307"
+            },
+            {
+                "student_name": "MUHAMAD FAJRI I",
+                "student_id": "88884308"
+            },
+            {
+                "student_name": "MUHAMAD ILHAM S",
+                "student_id": "88884309"
+            },
+            {
+                "student_name": "PIPIT PITRIA",
+                "student_id": "88884310"
+            },
+            {
+                "student_name": "PRATAMA PUTRA R",
+                "student_id": "88884311"
+            },
+            {
+                "student_name": "R EDLIN DAVID RAFAEL",
+                "student_id": "88884312"
+            },
+            {
+                "student_name": "RAFI AL FAZRI",
+                "student_id": "88884313"
+            },
+            {
+                "student_name": "RAHMA RUSTINI",
+                "student_id": "88884314"
+            },
+            {
+                "student_name": "RAISA AZRA NABILLAH",
+                "student_id": "88884315"
+            },
+            {
+                "student_name": "RAYSHA MINA HIZZAH O",
+                "student_id": "88884316"
+            },
+            {
+                "student_name": "REDYA PURNAMA",
+                "student_id": "88884317"
+            },
+            {
+                "student_name": "RIFAT FADILLAH",
+                "student_id": "88884318"
+            },
+            {
+                "student_name": "RIRIN CAHYA NURILMA",
+                "student_id": "88884319"
+            },
+            {
+                "student_name": "RISKA PUTRI PRATAMA",
+                "student_id": "88884320"
+            },
+            {
+                "student_name": "RISKI MAULANA",
+                "student_id": "88884321"
+            },
+            {
+                "student_name": "RIZKI OWI YANTO",
+                "student_id": "88884322"
+            },
+            {
+                "student_name": "RIZKI TAUFIK AKBAR",
+                "student_id": "88884323"
+            },
+            {
+                "student_name": "RIZKI   ALDIYANSAH",
+                "student_id": "88884324"
+            },
+            {
+                "student_name": "SANDA MULYASI",
+                "student_id": "88884325"
+            },
+            {
+                "student_name": "SHILA KHOYROTUN HISAAN",
+                "student_id": "88884326"
+            },
+            {
+                "student_name": "SITI FATIMAH ZAHRA S",
+                "student_id": "88884327"
+            },
+            {
+                "student_name": "SULIS",
+                "student_id": "88884328"
+            },
+            {
+                "student_name": "TIA RAMADANI",
+                "student_id": "88884329"
+            },
+            {
+                "student_name": "YULIA NUR ROHMAH",
+                "student_id": "88884330"
+            },
+            {
+                "student_name": "ZAHRA QOTHRUNNADA",
+                "student_id": "88884331"
+            },
+            {
+                "student_name": "ZAHIRA SILVANA O",
+                "student_id": "88884332"
+            },
+            {
+                "student_name": "ZIO JANUAR",
+                "student_id": "88884333"
+            },
+            {
+                "student_name": "TAMBATAN QOLBU LIGA P",
+                "student_id": "88884334"
+            }
+        ]
+    },
+    "class88894400": {
+        "teacher_DiscordID": "",
+        "teacher_ID": "88890000",
+        "students": [
+            {
+                "student_name": "MUHAMAD RIZKI",
+                "student_id": "88894401"
+            },
+            {
+                "student_name": "ALBAIHAQI AZKA ARROZAK",
+                "student_id": "88894402"
+            },
+            {
+                "student_name": "ARSAN KANAFI",
+                "student_id": "88894403"
+            },
+            {
+                "student_name": "GALANG PUTRA ROMADONI",
+                "student_id": "88894404"
+            },
+            {
+                "student_name": "KEZSYA OLIVIA",
+                "student_id": "88894405"
+            },
+            {
+                "student_name": "LUZZAIND AL RAMADHANI",
+                "student_id": "88894406"
+            }
+        ]
+    }
+}
