@@ -9,6 +9,8 @@ from nextcord.ext import commands
 from datetime import datetime
 from main import get_conn, release_conn  # Importing from main.py
 
+
+
 # Create test_bi_results and ppl_current_topic tables if they don't exist
 conn = get_conn()
 cur = conn.cursor()
@@ -70,10 +72,10 @@ async def send_qr_embed(ctx, channel):
 
         # Send the embedded message along with the file
         msg = await channel.send(embed=embed, file=file)
-        await msg.delete(delay=90)
+        await msg.delete(delay=300)
     else:
         msg = await ctx.channel.send("No QR code information found.")
-        await msg.delete(delay=90)
+        await msg.delete(delay=300)
 
 
 class TopicSelectionView(nextcord.ui.View):
@@ -112,6 +114,7 @@ class TopicSelectionView(nextcord.ui.View):
 
 
 
+
 class ConfirmView(nextcord.ui.View):
     def __init__(self):
         super().__init__()
@@ -132,11 +135,6 @@ class ConfirmView(nextcord.ui.View):
 
 
 
-from datetime import datetime
-import psycopg2.extras
-import nextcord
-import asyncio
-from main import get_conn, release_conn  # Importing from main.py
 
 class BiWeeklyTest(commands.Cog):
     def __init__(self, bot):
@@ -149,50 +147,47 @@ class BiWeeklyTest(commands.Cog):
         temp_channel = await ctx.guild.create_text_channel(channel_name)
         await temp_channel.set_permissions(ctx.author, read_messages=True, send_messages=True)
         
-        await ctx.send(f"{ctx.author.mention}, Silakan lanjutkan proses tes dua mingguan di {temp_channel.mention}.", delete_after=30)
+        await ctx.send(f"{ctx.author.mention}, Silakan lanjutkan proses tes dua mingguan di {temp_channel.mention}.", delete_after=300)
         await temp_channel.send(f"{ctx.author.mention}, Silakan lanjutkan proses tes dua mingguan di sini.")
         
-        # Prompt for event date in the temporary channel
-        event_date_msg = await temp_channel.send("Silakan masukkan tanggal acara dalam format dd-mm-yy:")
-        def check(m):
-            return m.channel == temp_channel and m.author == ctx.author
-        event_date_response = await self.bot.wait_for('message', check=check)
+        while True:  # Loop for date input
+            # Prompt for event date in the temporary channel
+            event_date_msg = await temp_channel.send("Silakan masukkan tanggal acara dalam format dd-mm-yy:")
+            def check(m):
+                return m.channel == temp_channel and m.author == ctx.author
+            event_date_response = await self.bot.wait_for('message', check=check)
 
-        # Convert the entered date to datetime object
-        try:
-            event_date = datetime.strptime(event_date_response.content, '%d-%m-%y')
-        except ValueError:
-            await temp_channel.send("Format tanggal tidak valid. Silakan gunakan dd-mm-yy.")
-            return
-
-        conn = get_conn()
-        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        
-        cur.execute("SELECT staff_id FROM auth_data WHERE discord_id = %s", (str(ctx.author.id),))
-        teacher_staff_id_row = cur.fetchone()
-        teacher_staff_id = teacher_staff_id_row['staff_id'] if teacher_staff_id_row else None
-
-        cur.execute("SELECT class_id FROM ppl_classes WHERE teacher_id = %s", (teacher_staff_id,))
-        class_id_row = cur.fetchone()
-        class_id = class_id_row['class_id'] if class_id_row else None
-
-        cur.close()
-        release_conn(conn)
-
-        if teacher_staff_id and class_id:
-            student_topic_map = await mark_bi_weekly_test(temp_channel, teacher_staff_id, class_id, sequence)
-        else:
-            await temp_channel.send("Teacher or class not found.")
-        
-        conn = get_conn()
-        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-
-        confirm_view = ConfirmView()
-        confirm_msg = await temp_channel.send("Do you want to save these inputs?", view=confirm_view)
-        await confirm_view.wait()
-
-        if confirm_view.value:
+            # Convert the entered date to datetime object
             try:
+                event_date = datetime.strptime(event_date_response.content, '%d-%m-%y')
+                break  # Exit the loop if the date is valid
+            except ValueError:
+                await temp_channel.send("Format tanggal tidak valid. Silakan gunakan dd-mm-yy.")
+                continue  # Continue the loop if the date is invalid
+
+        # Rest of the code
+        try:
+            conn = get_conn()
+            cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            
+            cur.execute("SELECT staff_id FROM auth_data WHERE discord_id = %s", (str(ctx.author.id),))
+            teacher_staff_id_row = cur.fetchone()
+            teacher_staff_id = teacher_staff_id_row['staff_id'] if teacher_staff_id_row else None
+
+            cur.execute("SELECT class_id FROM ppl_classes WHERE teacher_id = %s", (teacher_staff_id,))
+            class_id_row = cur.fetchone()
+            class_id = class_id_row['class_id'] if class_id_row else None
+
+            if teacher_staff_id and class_id:
+                student_topic_map = await mark_bi_weekly_test(temp_channel, teacher_staff_id, class_id, sequence)
+            else:
+                await temp_channel.send("Teacher or class not found.")
+            
+            confirm_view = ConfirmView()
+            confirm_msg = await temp_channel.send("Do you want to save these inputs?", view=confirm_view)
+            await confirm_view.wait()
+
+            if confirm_view.value:
                 print("About to insert data into test_bi_results and ppl_current_topic.")
                 for student_id, selected_topic in student_topic_map.items():
                     cur.execute("INSERT INTO test_bi_results (time_stamp, event_date, sequence, student_ID, topic, next_topic) VALUES (%s, %s, %s, %s, %s, %s)",
@@ -204,46 +199,53 @@ class BiWeeklyTest(commands.Cog):
                 print("Data inserted successfully.")
                 await send_qr_embed(ctx, temp_channel)
             
-            except Exception as e:
-                print(f"An error occurred: {e}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            await temp_channel.send(f"An error occurred: {e}")
 
-        cur.close()
-        release_conn(conn)
-
-        await asyncio.sleep(90)
-        await temp_channel.delete()
-
-
-
-
+        finally:
+            cur.close()
+            release_conn(conn)
+            await asyncio.sleep(90)
+            await temp_channel.delete()
 
 
 
 async def mark_bi_weekly_test(ctx, teacher_staff_id, class_id, sequence):
-    conn = get_conn()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    try:
+        conn = get_conn()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-    cur.execute("SELECT student_id, student_name FROM ppl_classes WHERE class_id = %s AND active = 'yes'", (class_id,))
-    students = cur.fetchall()
+        cur.execute("SELECT student_id, student_name FROM ppl_classes WHERE class_id = %s AND active = 'yes'", (class_id,))
+        students = cur.fetchall()
 
-    student_topic_map = {}
-    summary_text = "Summary of Inputs:\n"
+        student_topic_map = {}
+        summary_text = "Summary of Inputs:\n"
 
-    for student in students:
-        student_id = student['student_id']
-        student_name = student['student_name']
+        for student in students:
+            student_id = student['student_id']
+            student_name = student['student_name']
 
-        view = TopicSelectionView(ctx, student_name, student_id)
-        msg = await ctx.send(f"Select topic for {student_name} (ID: {student_id}):", view=view)
-        await view.wait()
-        await msg.delete()
+            view = TopicSelectionView(ctx, student_name, student_id)
+            msg = await ctx.send(f"Select topic for {student_name} (ID: {student_id}):", view=view)
+            await view.wait()
+            await msg.delete()
 
-        selected_topic = view.selected_topic
-        student_topic_map[student_id] = selected_topic
-        summary_text += f"Student: {student_name}, Selected Topic: {selected_topic}\n"
+            selected_topic = view.selected_topic
+            student_topic_map[student_id] = selected_topic
+            summary_text += f"Student: {student_name}, Selected Topic: {selected_topic}\n"
 
-    await ctx.send(summary_text)
-    return student_topic_map
+        await ctx.send(summary_text)
+        return student_topic_map
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        await ctx.send(f"An error occurred: {e}")
+
+    finally:
+        cur.close()
+        release_conn(conn)
+
 
 def setup(bot):
     bot.add_cog(BiWeeklyTest(bot))

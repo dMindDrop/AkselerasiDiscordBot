@@ -55,10 +55,10 @@ async def send_qr_embed_for_triple(ctx):
         embed.add_field(name="Link", value=f"[Click here if you're on mobile]({link})", inline=False)
         embed.set_image(url="attachment://qrcode.png")
         msg = await ctx.send(embed=embed, file=file)  # Changed here
-        await msg.delete(delay=90)
+        await msg.delete(delay=300)
     else:
         msg = await ctx.send("No QR code information found.")  # Changed here
-        await msg.delete(delay=90)
+        await msg.delete(delay=300)
 
 
 
@@ -74,21 +74,23 @@ class TripleTest(commands.Cog):
         temp_channel = await ctx.guild.create_text_channel(channel_name)
         await temp_channel.set_permissions(ctx.author, read_messages=True, send_messages=True)
         
-        await ctx.send(f"{ctx.author.mention}, Silakan lanjutkan proses triple test di {temp_channel.mention}.", delete_after=10)
+        await ctx.send(f"{ctx.author.mention}, Silakan lanjutkan proses triple test di {temp_channel.mention}.", delete_after=300)
         await temp_channel.send(f"{ctx.author.mention}, Silakan lanjutkan proses triple test di sini.")
         
-        # Prompt for event date in the temporary channel
-        event_date_msg = await temp_channel.send("Silakan masukkan tanggal acara dalam format dd-mm-yy:")
-        def check(m):
-            return m.channel == temp_channel and m.author == ctx.author
-        event_date_response = await self.bot.wait_for('message', check=check)
+        while True:  # Loop for date input
+            # Prompt for event date in the temporary channel
+            event_date_msg = await temp_channel.send("Silakan masukkan tanggal acara dalam format dd-mm-yy:")
+            def check(m):
+                return m.channel == temp_channel and m.author == ctx.author
+            event_date_response = await self.bot.wait_for('message', check=check)
 
-        # Convert the entered date to datetime object
-        try:
-            event_date = datetime.strptime(event_date_response.content, '%d-%m-%y')
-        except ValueError:
-            await temp_channel.send("Format tanggal tidak valid. Silakan gunakan dd-mm-yy.")
-            return
+            # Convert the entered date to datetime object
+            try:
+                event_date = datetime.strptime(event_date_response.content, '%d-%m-%y')
+                break  # Exit the loop if the date is valid
+            except ValueError:
+                await temp_channel.send("Format tanggal tidak valid. Silakan gunakan dd-mm-yy.")
+                continue  # Continue the loop if the date is invalid
 
         conn = get_conn()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -121,37 +123,44 @@ async def mark_triple_test(ctx, teacher_staff_id, class_id, sequence, event_date
     conn = get_conn()  # Get a connection from the pool
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-    msg = await ctx.send(f"Saat ini memasukkan data untuk sekuens {sequence}.")
-    await msg.delete(delay=90)
+    try:
+        msg = await ctx.send(f"Saat ini memasukkan data untuk sekuens {sequence}.")
+        await msg.delete(delay=300)
 
-    cur.execute("SELECT student_id, student_name FROM ppl_classes WHERE class_id = %s AND active = 'yes'", (class_id,))
-    students = cur.fetchall()
+        cur.execute("SELECT student_id, student_name FROM ppl_classes WHERE class_id = %s AND active = 'yes'", (class_id,))
+        students = cur.fetchall()
 
-    for student in students:
-        student_id = student['student_id']
-        student_name = student['student_name']
+        for student in students:
+            student_id = student['student_id']
+            student_name = student['student_name']
 
-        view = TripleInputView(ctx, student_name, student_id)
-        msg = await ctx.send(f"Mark triple test for {student_name} (ID: {student_id}):", view=view)
-        await msg.delete(delay=90)
-        await view.wait()
+            view = TripleInputView(ctx, student_name, student_id)
+            msg = await ctx.send(f"Mark triple test for {student_name} (ID: {student_id}):", view=view)
+            await msg.delete(delay=300)
+            await view.wait()
 
-        topic_based_on_result = view.topic
+            topic_based_on_result = view.topic
 
-        cur.execute("INSERT INTO test_triple (time_stamp, event_date, sequence, student_ID, topic_based_on_result) VALUES (%s, %s, %s, %s, %s)",
-                (datetime.now(), event_date, sequence, student_id, topic_based_on_result))  # Add event_date here
-        conn.commit()
+            cur.execute("INSERT INTO test_triple (time_stamp, event_date, sequence, student_ID, topic_based_on_result) VALUES (%s, %s, %s, %s, %s)",
+                    (datetime.now(), event_date, sequence, student_id, topic_based_on_result))
+            conn.commit()
 
-        cur.execute("INSERT INTO ppl_current_topic (time_stamp, student_ID, current_topic, assessment_tool) VALUES (%s, %s, %s, %s)",
-                (datetime.now(), student_id, topic_based_on_result, 'triple'))  # No event_date here
-        conn.commit()
+            cur.execute("INSERT INTO ppl_current_topic (time_stamp, student_ID, current_topic, assessment_tool) VALUES (%s, %s, %s, %s)",
+                    (datetime.now(), student_id, topic_based_on_result, 'triple'))
+            conn.commit()
 
-    msg = await ctx.send(f"Triple test untuk {class_id} untuk sekuens {sequence} telah berhasil direkam.")
-    await msg.delete(delay=90)
+        msg = await ctx.send(f"Triple test untuk {class_id} untuk sekuens {sequence} telah berhasil direkam.")
+        await msg.delete(delay=300)
 
-    await send_qr_embed_for_triple(ctx)
-    cur.close()
-    release_conn(conn)  # Release the connection back to the pool
+        await send_qr_embed_for_triple(ctx)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        conn.rollback()
+
+    finally:
+        cur.close()
+        release_conn(conn)  # Release the connection back to the pool
 
 def setup(bot):
     bot.add_cog(TripleTest(bot))

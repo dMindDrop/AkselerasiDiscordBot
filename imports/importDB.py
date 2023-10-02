@@ -13,7 +13,7 @@ conn = pool.getconn()
 cur = conn.cursor()
 
 # Read the CSV file and determine column names
-csv_file_path = 'akselerasi-All-IDs_v2.csv'
+csv_file_path = 'akselerasi-All-IDs_v3.csv'
 with open(csv_file_path, 'r') as f:
     reader = csv.reader(f)
     columns = next(reader)
