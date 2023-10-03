@@ -1,21 +1,30 @@
 import nextcord
 from nextcord.ext import commands
-import psycopg2.pool
-import os
+import psycopg2
+import logging
+from main import DatabaseConnectionManager  # Importing from main.py
 from collections import defaultdict
-from main import get_conn, release_conn  # Importing from main.py
+
+logger = logging.getLogger(__name__)
+
 
 class MyClass(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
 
     @commands.command(name='kelassaya')
     async def my_class(self, ctx, sequence: int):
         author_id = str(ctx.author.id)
-        conn = get_conn() # Using centralized get_conn
-        cur = conn.cursor()
+        try:
+            # Use DatabaseConnectionManager with the with statement
+            with DatabaseConnectionManager() as conn:
+                with conn.cursor() as cur:
+                    await self.fetch_and_send_class_info(ctx, sequence, author_id, cur)
+        except Exception as e:
+            logger.error(f"An error occurred: {e}")
+            await ctx.author.send("An error occurred while processing your request.")
 
+    async def fetch_and_send_class_info(self, ctx, sequence, author_id, cur):
         cur.execute("SELECT staff_id FROM auth_data WHERE discord_id = %s", (author_id,))
         teacher_id = cur.fetchone()
         if not teacher_id:
@@ -39,6 +48,10 @@ class MyClass(commands.Cog):
                 questions = cur.fetchall()
                 topic_question_cache[current_topic] = questions
 
+        message = await self.generate_message(sequence, topic_student_map, topic_question_cache)
+        await ctx.author.send(message)
+
+    async def generate_message(self, sequence, topic_student_map, topic_question_cache):
         message = f"📚 **Informasi tentang Kelas Putaran {sequence}** 📚\n"
 
         for topic, student_names in topic_student_map.items():
@@ -56,10 +69,8 @@ class MyClass(commands.Cog):
             message += question_text
             message += f"👩‍🎓 **Siswa**: {', '.join(student_names)}\n\n\n"
 
-        await ctx.author.send(message)
+        return message
 
-        cur.close()
-        release_conn(conn)  # Using centralized release_conn
 
 def setup(bot):
     bot.add_cog(MyClass(bot))

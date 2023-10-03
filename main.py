@@ -61,21 +61,31 @@ intents.members = True
 # Initialize bot
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+# DatabaseConnectionManager class
+class DatabaseConnectionManager:
+    def __enter__(self):
+        self.conn = get_conn()
+        return self.conn
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        logging.info("Releasing connection through DatabaseConnectionManager.")
+        release_conn(self.conn)
+
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send('Invalid command.')
-    elif isinstance(error.original, psycopg2.OperationalError):
-        conn = get_conn()
-        release_conn(conn)
-        await ctx.send('Ups, we were out for a quick coffee. Please try again.')
-    elif isinstance(error.original, psycopg2.pool.PoolError):
-        await ctx.send('Terlalu banyak orang yang mencoba hal yang sama. Silakan coba lagi dalam 10 detik.')
+    elif hasattr(error, 'original'):
+        if isinstance(error.original, psycopg2.OperationalError):
+            conn = get_conn()
+            release_conn(conn)
+            await ctx.send('Ups, we were out for a quick coffee. Please try again.')
+        elif isinstance(error.original, psycopg2.pool.PoolError):
+            await ctx.send('Terlalu banyak orang yang mencoba hal yang sama. Silakan coba lagi dalam 10 detik.')
 
 @bot.event
 async def on_ready():
     print(f"{bot.user} has connected to Discord!")
-    temp_channel_cleanup.start()
     close_inactive_connections_task.start()  # Start the task to close inactive connections
 
 @bot.command(name='hello')

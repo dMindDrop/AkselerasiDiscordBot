@@ -7,6 +7,7 @@ import asyncio
 from nextcord.ext import commands
 from io import BytesIO  # Import BytesIO for handling byte streams
 from main import get_conn, release_conn
+from main import DatabaseConnectionManager  # Importing from main.py
 
 
 # Create a new table for authentication data if it doesn't exist
