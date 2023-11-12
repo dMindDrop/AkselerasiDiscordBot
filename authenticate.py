@@ -122,7 +122,7 @@ async def authenticate_member(temp_channel, member, bot):
         last_name_msg = await bot.wait_for('message', check=lambda m: m.author == member)
         last_name = last_name_msg.content
 
-        valid_group_codes = ['JGB1', 'JKB1','KGS2', 'KKS2', 'KGS1', 'KKS1', 'JGB2', 'JKB2', 'PILOT', 'CORE']
+        valid_group_codes = ['JGB1', 'JKB1', 'KGS2', 'KKS2', 'KGS1', 'KKS1', 'JGB2', 'JKB2', 'JGS1', 'JKS1', 'KGB1', 'KKB1', 'JGS2', 'JKS2', 'KGB2', 'KKB2', 'PILOT', 'CORE']
         while True:
             msg = await temp_channel.send('Masukkan kode grup Anda:')
             await msg.delete(delay=300)

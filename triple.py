@@ -42,7 +42,7 @@ release_conn(conn)
 async def send_qr_embed_for_triple(ctx):
     conn = get_conn()  # Get a connection from the pool
     cur = conn.cursor()
-    cur.execute("SELECT title, description, image, link FROM admin_qrcode WHERE title = 'Training';")
+    cur.execute("SELECT title, description, image, link FROM admin_qrcode WHERE title = 'Triple';")
     row = cur.fetchone()
     cur.close()
     release_conn(conn)  # Release the connection back to the pool

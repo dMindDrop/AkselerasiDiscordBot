@@ -87,6 +87,7 @@ async def on_command_error(ctx, error):
 async def on_ready():
     print(f"{bot.user} has connected to Discord!")
     close_inactive_connections_task.start()  # Start the task to close inactive connections
+    temp_channel_cleanup.start()  # Start the task to cleanup temporary channels
 
 @bot.command(name='hello')
 async def hello(ctx):
@@ -116,7 +117,7 @@ async def temp_channel_cleanup():
                 
                 last_message = last_message[0]
                 time_since_last_message = (datetime.utcnow().replace(tzinfo=timezone.utc) - last_message.created_at).seconds
-                if time_since_last_message > 300:
+                if time_since_last_message > 1200:
                     await channel.delete(reason="Inactivity timeout")
 
 # Load the cogs

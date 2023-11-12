@@ -47,7 +47,7 @@ async def send_qr_embed(ctx, channel):
     cur = conn.cursor()
 
     # Fetch the QR code and link with the title 'Student Attendance'
-    cur.execute("SELECT title, description, image, link FROM admin_qrcode WHERE title = 'Training';")
+    cur.execute("SELECT title, description, image, link FROM admin_qrcode WHERE title = 'Quiz';")
     row = cur.fetchone()
 
     # Close the cursor and release the connection back to the pool
@@ -116,8 +116,8 @@ class TopicSelectionView(nextcord.ui.View):
 
 
 class ConfirmView(nextcord.ui.View):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, timeout=None):
+        super().__init__(timeout=timeout)
         self.value = None
 
     @nextcord.ui.button(label='Konfirmasi', style=nextcord.ButtonStyle.success)
@@ -183,7 +183,7 @@ class BiWeeklyTest(commands.Cog):
             else:
                 await temp_channel.send("Teacher or class not found.")
             
-            confirm_view = ConfirmView()
+            confirm_view = ConfirmView(timeout=1200)
             confirm_msg = await temp_channel.send("Do you want to save these inputs?", view=confirm_view)
             await confirm_view.wait()
 
@@ -233,7 +233,7 @@ async def mark_bi_weekly_test(ctx, teacher_staff_id, class_id, sequence):
 
             selected_topic = view.selected_topic
             student_topic_map[student_id] = selected_topic
-            summary_text += f"Student: {student_name}, Selected Topic: {selected_topic}\n"
+            summary_text += f"{student_name}, {selected_topic}\n"
 
         await ctx.send(summary_text)
         return student_topic_map

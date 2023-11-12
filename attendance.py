@@ -42,7 +42,7 @@ async def send_qr_embed(ctx):
     cur = conn.cursor()
 
     # Fetch the QR code and link with the title 'Student Attendance'
-    cur.execute("SELECT title, description, image, link FROM admin_qrcode WHERE title = 'Training';")
+    cur.execute("SELECT title, description, image, link FROM admin_qrcode WHERE title = 'Attendance';")
     row = cur.fetchone()
 
     # Close the cursor and release the connection back to the pool
